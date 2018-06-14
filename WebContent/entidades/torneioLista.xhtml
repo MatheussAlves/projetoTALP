@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<title>Torneio</title>
+	</h:head>
+	<h:body>
+		<h:outputLabel value="Torneios abertos e fechados" style="font: 18px Arial; font-weight: bold" /><p />
+		<p:messages layout="table" errorStyle="color: red" infoStyle="color: green" warnStyle="color: orange" fatalStyle="color: gray" showSummary="false" showDetail="true" />
+		<h:form>
+		<p:dataTable value="#{torneioMB.torneios}" var="torneio" border="1">
+			<f:facet name="header">
+					<p:outputLabel value="Listagem de torneios" style="font: 14px Arial; font-weight: bold" />
+			</f:facet>
+			<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Nome" />
+					</f:facet>
+					<h:outputText value="#{torneio.nome}" />
+			</p:column>	
+			<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Local" />
+					</f:facet>
+					<h:outputText value="#{torneio.local}" />
+			</p:column>
+			<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Situacao" />
+					</f:facet>
+					<h:outputText value="#{torneio.situacao}" />
+			</p:column>
+			<p:column>
+					<f:facet name="header">
+						<h:outputText value="Equipes" />
+					</f:facet>
+					<p:dataTable value="#{torneio.equipes}" var="equipe" border="1">
+						<p:column>
+							<h:outputText value="#{equipe.nome}" />
+						</p:column>
+					</p:dataTable>
+			</p:column>
+			<p:column>
+					<f:facet name="header">
+						<h:outputText value="Ação" />
+					</f:facet>
+					<p:commandLink action="#{torneioMB.excluir(torneio)}" ajax="false">
+						<h:graphicImage value="/img/excluir.png" title="Excluir" width="22" height="22" style="border: none" />
+					</p:commandLink>
+					<p:commandLink action="/entidades/torneioForm" ajax="false">
+						<f:setPropertyActionListener value="#{torneio}" target="#{torneioMB.torneio}" />
+						<h:graphicImage value="/img/editar.png" title="Editar" width="22" height="22" style="border: none" />
+					</p:commandLink>
+					<p:commandLink action="/entidades/participacaoForm" ajax="false">
+						<f:setPropertyActionListener value="#{torneio}" target="#{participacaoMB.torneio}"/>
+						<h:graphicImage value="/img/adcequipes.png" title="Adicionar" widht="33" height="33" style="border: none"/>
+					</p:commandLink>
+				</p:column>
+		</p:dataTable>
+		<p/>
+		<p:commandLink value="Incluir" action="#{torneioMB.incluir}" />
+		<h:outputText value=" " />
+		<p:commandLink value="Voltar" action="/index" />
+		</h:form>
+	</h:body>	
+</html>

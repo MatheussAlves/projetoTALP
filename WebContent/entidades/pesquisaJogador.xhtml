@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<title>Pesquisa de Jogador</title>
+	</h:head>
+<h:body>
+	<p:outputLabel value="Filtrar Jogadores" style="font: 18px Arial; font-weight: bold" /><p />
+		<p:messages layout="table" errorStyle="color: red" infoStyle="color: green" warnStyle="color: orange" fatalStyle="color: gray" showSummary="false" showDetail="true" />
+		<h:form>
+			<p:panelGrid columns="2">
+			<p:selectOneMenu id="jogador" value="#{jogadorMB.jogador}"  converter="jogadorConverter" required="true">
+					<f:selectItems value="#{jogadorMB.jogadores}" var="jogador" itemLabel="#{jogador.nome}"/>
+			</p:selectOneMenu>
+			<p:commandButton value="Pesquisar" action="#{jogadorMB.lista}" ajax="false"/>
+			</p:panelGrid>
+			<p:commandLink value="Voltar" action="/index" />
+		</h:form>
+		
+			<p:dataTable value="#{jogadorMB.jogadoresPesquisados}" var="jogador" border="1" rendered="#{jogadorMB.jogadoresPesquisados != null}">
+				<f:facet name="header">
+					<h:outputText value="Listagem de Jogadores" style="font: 14px Arial; font-weight: bold" />
+				</f:facet>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{jogador.nome}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Equipe" />
+					</f:facet>
+					<h:outputText value="#{jogador.equipe.nome}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Posicao" />
+					</f:facet>
+					<h:outputText value="#{jogador.posicao.nome}" />
+				</p:column>
+		</p:dataTable>
+</h:body>
+</html>

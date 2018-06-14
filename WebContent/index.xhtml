@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<title>Torneio</title>
+	</h:head>
+	<h:body>
+		<h:form>
+		
+		<p:panel>
+		<p:growl id="growl" life="2000" />
+			<p:outputLabel value="Sistema de cadastro de torneios" style="font: 18px Arial; font-weight: bold" /><p />
+			<p:commandLink value="Jogadores" action="#{jogadorMB.listar}" /><br />
+			<p:commandLink value="Equipes" action="#{equipeMB.listar}" /><br />
+			<p:commandLink value="Torneio" action="#{torneioMB.listar}" /><br />
+		</p:panel>
+		</h:form>
+		
+	</h:body>
+	
+</html>

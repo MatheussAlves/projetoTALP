@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Torneio</title>
+</h:head>
+<h:body>
+	<h:outputText value="Torneio" style="font: 18px Arial; font-weight: bold" /><p />
+		<p:messages layout="table" errorStyle="color: red" infoStyle="color: green" warnStyle="color: orange" fatalStyle="color: gray" showSummary="false" showDetail="true" />
+		<p:fieldset legend="#{participacaoMB.torneio.nome}" style="margin-bottom:20px">
+		<h:form>
+			<h:panelGrid columns="2" cellpadding="5"/>
+				<h:outputLabel for="times" value="Selecione os times:"/>
+				<p:selectCheckboxMenu id="menu" value="#{participacaoMB.equipesSelecionadas}" converter="equipeConverter" 
+				label="Equipes" filter="true" filterMatchMode="startsWith"
+				panelStyle="width:250px">
+					<f:selectItems value="#{participacaoMB.equipes}" var="equipe" itemLabel="#{equipe.nome}"/>
+				
+				</p:selectCheckboxMenu><p/>
+		<p:commandButton value="Salvar" action="#{participacaoMB.salvar}" /><br/>
+		<p:commandButton value="Cancelar" action="#{torneioMB.listar}" immediate="true" /><br/>
+		</h:form>
+		</p:fieldset>
+</h:body>
+</html>

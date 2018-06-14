@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<title>Torneio</title>
+	</h:head>
+	<h:body>
+		<h:outputText value="Torneio" style="font: 18px Arial; font-weight: bold" /><p />
+		<p:messages layout="table" errorStyle="color: red" infoStyle="color: green" warnStyle="color: orange" fatalStyle="color: gray" showSummary="false" showDetail="true" />
+		<p:fieldset legend="Cadastro" style="margin-bottom:20px">
+		<h:outputText value="#{jogadorMB.jogador.id==0 ? 'Inclusão de jogador' : 'Edição de jogador'}" /><p />
+		<h:form>
+			<h:outputLabel value="Nome:" for="nome" /><br/>
+			<p:inputText id="nome" value="#{jogadorMB.jogador.nome}" label="nome" size="50" maxlength="50" required="true" />
+			<h:message for="nome" showSummary="true" showDetail="false" /><p />
+
+			
+			<h:outputLabel value="Posição:" for="posicao" /><br/>
+			<p:selectOneMenu id="posicao" value="#{jogadorMB.jogador.posicao}" required="true">
+				<f:selectItems value="#{enumMB.posicoes}" itemValue="#{posicao}" var="posicao" itemLabel="#{posicao.nome}"/>
+			</p:selectOneMenu>			
+			<h:message for="posicao" showSummary="true" showDetail="false" /><p />
+			
+			<p:outputLabel value="Equipe:" for="equipe" /><br/>
+			<p:selectOneMenu id="equipe" value="#{jogadorMB.jogador.equipe}" converter="equipeConverter" required="true">
+				<f:selectItems value="#{jogadorMB.equipes}" var="equipe" itemLabel="#{equipe.nome}" />
+			</p:selectOneMenu>			
+			<h:message for="selecao" showSummary="true" showDetail="false" /><p />
+			
+			<p:commandButton value="Salvar" action="#{jogadorMB.salvar}" /><br/>
+			<p:commandButton value="Cancelar" action="#{jogadorMB.listar}" immediate="true" />
+			
+		</h:form>
+		</p:fieldset>
+	</h:body>
+</html>
+
+
+
+
+
+
+
+
+
